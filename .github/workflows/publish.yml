@@ -17,16 +17,12 @@ jobs:
     - name: extract gem version from tag
       id: vars
       run: echo version=v0.1.0 | sed -e 's/v0/0/' >> $GITHUB_OUTPUT
-    - name: echo version
-      run: echo "release ${{ steps.vars.outputs.version }}"
-    - name: build gem
-      run: |
-        rake build
-    - name: test ls
-      run: |
-        ls pkg/*
+#    - name: echo version
+#      run: echo "release ${{ steps.vars.outputs.version }}"
     - name: Publish
       run: |
+        rake build
+        ls pkg/*
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
