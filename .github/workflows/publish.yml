@@ -31,7 +31,7 @@ jobs:
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
         printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
-        gem push pkg/embulk-output-hiroysato-${{ steps.vars.outputs.version }}.gem
+        gem push pkg/embulk-input-hiroysato-${{ steps.vars.outputs.version }}.gem
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
       env:
         RUBYGEMS_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
