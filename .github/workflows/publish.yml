@@ -16,16 +16,15 @@ jobs:
         ruby-version: 3.3.0
     - name: build gem
       id: vars
-      run: echo "version=${{github.ref_name}}" | tr -d 'v' >> $GITHUB_OUTPUT
+      run: echo version=v0.1.0 | sed -e 's/v0/0/' >> $GITHUB_OUTPUT
     - name: echo version
-      run: echo "release ${{ steps.vars.outputs.version }}":w
+      run: echo "release ${{ steps.vars.outputs.version }}"
     - name: build gem
       run: |
         rake build
     - name: test ls
       run: |
         ls pkg/*
-#        gem push pkg/embulk-output-bigquery-{{ steps.vars.outputs.version }}.gem
     - name: Publish
       run: |
         mkdir -p $HOME/.gem
