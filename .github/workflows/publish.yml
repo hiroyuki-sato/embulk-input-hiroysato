@@ -17,6 +17,7 @@ jobs:
       with:
         ruby-version: 3.3.0
     - name: build gem
+      id: vars
       run: echo "version=${{github.ref_name}}" | tr -d 'v' >> $GITHUB_OUTPUT
     - name: echo version
       run: echo "release ${{ steps.vars.outputs.version }}":w
