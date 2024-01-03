@@ -5,8 +5,6 @@ on:
       - "v0.*"
 jobs:
   publish:
-#    environment:
-#      name: maven-central-and-ruby-gems
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
