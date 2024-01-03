@@ -17,12 +17,16 @@ jobs:
       with:
         ruby-version: 3.3.0
     - name: build gem
+      run: echo "version=${{github.ref_name}}" | tr -d 'v' >> $GITHUB_OUTPUT
+    - name: echo version
+      run: echo "release ${{ steps.vars.outputs.version }}":w
+    - name: build gem
       run: |
         rake build
     - name: test ls
       run: |
         ls pkg/*
-#        gem push pkg/embulk-output-bigquery-${VERSION}.gem
+#        gem push pkg/embulk-output-bigquery-{{ steps.vars.outputs.version }}.gem
     - name: Publish
       run: |
         mkdir -p $HOME/.gem
@@ -30,6 +34,7 @@ jobs:
         chmod 0600 $HOME/.gem/credentials
         printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
 #        gem push pkg/embulk-output-bigquery-${VERSION}.gem
+        gem push pkg/embulk-output-bigquery-{{ steps.vars.outputs.version }}.gem
       env:
 #        ORG_GRADLE_PROJECT_ossrhUsername: ${{ secrets.OSSRH_USERNAME }}
 #        ORG_GRADLE_PROJECT_ossrhPassword: ${{ secrets.OSSRH_PASSWORD }}
