@@ -15,7 +15,7 @@ jobs:
       with:
         ruby-version: 3.3.0
     - name: echo test variable check
-      run: echo "test $MY_REPOSITORY_VARIABLE_IN_ACTIONS"
+      run: echo "test $MY_REPOSITORY_VARIABLE_IN_ACTIONS $MY_REPOSITORY_VARIABLE_IN_ACTIONS2"
     - name: echo test variable check2
       run: echo "test ${{secrets.MY_REPOSITORY_VARIABLE}}"
     # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
@@ -36,3 +36,4 @@ jobs:
       env:
         GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
         MY_REPOSITORY_VARIABLE_IN_ACTIONS: ${{secrets.MY_REPOSITORY_VARIABLE}}
+        MY_REPOSITORY_VARIABLE_IN_ACTIONS2: hogehoge2
