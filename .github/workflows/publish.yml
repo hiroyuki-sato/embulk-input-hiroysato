@@ -6,6 +6,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
+      MY_REPOSITORY_VARIABLE_IN_ACTIONS: ${{secrets.MY_REPOSITORY_VARIABLE}}
+      MY_REPOSITORY_VARIABLE_IN_ACTIONS2: hogehoge2
     strategy:
       fail-fast: true
     steps:
@@ -35,7 +39,3 @@ jobs:
 #        chmod 0600 $HOME/.gem/credentials
 #        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
-      env:
-        GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
-        MY_REPOSITORY_VARIABLE_IN_ACTIONS: ${{secrets.MY_REPOSITORY_VARIABLE}}
-        MY_REPOSITORY_VARIABLE_IN_ACTIONS2: hogehoge2
