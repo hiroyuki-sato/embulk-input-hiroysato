@@ -14,17 +14,19 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.3.0
+    # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+    # https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
     - name: extract gem version from tag
       id: vars
-      run: echo version=v0.1.0 | sed -e 's/v0/0/' >> $GITHUB_OUTPUT
+      run: echo version=${{ github.ref_name }} | sed -e 's/v0/0/' >> $GITHUB_OUTPUT
     - name: Publish
       run: |
         rake build
         ls pkg/*
-        mkdir -p $HOME/.gem
-        touch $HOME/.gem/credentials
-        chmod 0600 $HOME/.gem/credentials
         gem push pkg/embulk-input-hiroysato-${{ steps.vars.outputs.version }}.gem
+#        mkdir -p $HOME/.gem
+#        touch $HOME/.gem/credentials
+#        chmod 0600 $HOME/.gem/credentials
 #        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
       env:
