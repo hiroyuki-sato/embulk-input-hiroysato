@@ -14,6 +14,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.3.0
+    - name: extract gem version from tag
+      run: echo "test $MY_REPOSITORY_VARIABLE_IN_ACTIONS"
     # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
     # https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
     - name: extract gem version from tag
@@ -31,3 +33,4 @@ jobs:
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
       env:
         GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
+        MY_REPOSITORY_VARIABLE_IN_ACTIONS: ${{secrets.MY_REPOSITORY_VARIABLE}}
