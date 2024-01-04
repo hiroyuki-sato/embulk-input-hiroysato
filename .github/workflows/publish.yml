@@ -14,6 +14,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.3.0
+    - name: env
+      run: env
     - name: echo test variable check
       run: echo "test $MY_REPOSITORY_VARIABLE_IN_ACTIONS $MY_REPOSITORY_VARIABLE_IN_ACTIONS2"
     - name: echo test variable check2
