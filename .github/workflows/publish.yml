@@ -17,8 +17,6 @@ jobs:
     - name: extract gem version from tag
       id: vars
       run: echo version=v0.1.0 | sed -e 's/v0/0/' >> $GITHUB_OUTPUT
-#    - name: echo version
-#      run: echo "release ${{ steps.vars.outputs.version }}"
     - name: Publish
       run: |
         rake build
@@ -26,8 +24,8 @@ jobs:
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
         gem push pkg/embulk-input-hiroysato-${{ steps.vars.outputs.version }}.gem
+#        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
       env:
-        RUBYGEMS_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
+        GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
