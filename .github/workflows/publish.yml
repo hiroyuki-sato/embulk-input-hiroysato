@@ -16,7 +16,8 @@ jobs:
         ruby-version: 3.3.0
     - name: echo test variable check
       run: echo "test $MY_REPOSITORY_VARIABLE_IN_ACTIONS"
-      #run: echo "test ${{secrets.MY_REPOSITORY_VARIABLE}}"
+    - name: echo test variable check2
+      run: echo "test ${{secrets.MY_REPOSITORY_VARIABLE}}"
     # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
     # https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
     - name: extract gem version from tag
