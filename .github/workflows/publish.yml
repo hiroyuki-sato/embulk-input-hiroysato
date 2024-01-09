@@ -43,4 +43,4 @@ jobs:
 #        gem push pkg/embulk-output-bigquery-${{ steps.vars.outputs.version }}.gem
       env:
         EMBULK_PLUGIN_NAME: embulk-input-hiroysato
-        GEM_HOST_API_KEY: "${{secrets.GEM_HOST_API_KEY}}"
+        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
