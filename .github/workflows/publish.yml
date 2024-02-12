@@ -6,6 +6,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: my-test-environment
     strategy:
       fail-fast: true
     steps:
@@ -34,7 +35,6 @@ jobs:
     - name: echo test
       run: |
         echo ${HOGEHOGE}
-      environment: my-test-environment
       env:
         HOGEHOGE: ${{secrets.HOGEHOGE}}
     - name: Publish
