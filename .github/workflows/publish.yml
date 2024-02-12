@@ -31,6 +31,12 @@ jobs:
     #
     # https://guides.rubygems.org/command-reference/#gem-push
     #
+    - name: echo test
+      run: |
+        echo ${HOGEHOGE}
+      environment: my-test-environment
+      env:
+        HOGEHOGE: ${{secrets.HOGEHOGE}}
     - name: Publish
       run: |
         rake build
